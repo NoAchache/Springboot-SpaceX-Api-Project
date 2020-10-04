@@ -1,5 +1,6 @@
 package com.simpleproject.service;
 
+import com.simpleproject.dto.NextLaunchDto;
 import com.simpleproject.exception.SpaceXApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class SpaceXService {
     private final SpaceXClientService spaceXClientService;
 
-    public String getSpaceXNextLaunch() throws SpaceXApiException {
+    public NextLaunchDto getSpaceXNextLaunch() throws SpaceXApiException {
         return spaceXClientService.getSpaceXNextLaunch();
     }
 }

@@ -1,5 +1,6 @@
 package com.simpleproject.service;
 
+import com.simpleproject.dto.NextLaunchDto;
 import com.simpleproject.exception.SpaceXApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,15 +23,15 @@ public class SpaceXClientService {
         webClient = WebClient.create("https://api.spacexdata.com/v4/");
     }
 
-    public String getSpaceXNextLaunch() throws SpaceXApiException {
+    public NextLaunchDto getSpaceXNextLaunch() throws SpaceXApiException {
         try {
             log.info("XXXX");
 
-            String response = webClient
+            NextLaunchDto response = webClient
                     .get()
                     .uri("/launches/next")
                     .retrieve()
-                    .bodyToMono(String.class)
+                    .bodyToMono(NextLaunchDto.class)
                     .block();
 
             log.info("xxx");

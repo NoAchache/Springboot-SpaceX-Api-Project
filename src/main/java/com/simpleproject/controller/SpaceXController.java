@@ -1,5 +1,6 @@
 package com.simpleproject.controller;
 
+import com.simpleproject.dto.NextLaunchDto;
 import com.simpleproject.exception.SpaceXApiException;
 import com.simpleproject.service.SpaceXService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ public class SpaceXController {
     private final SpaceXService spaceXService;
 
     @GetMapping("/next-launch") // TODO:rename
-    public String getNextLaunchInfos() throws SpaceXApiException {
+    public NextLaunchDto getNextLaunchInfos() throws SpaceXApiException {
         return spaceXService.getSpaceXNextLaunch();
     }
 }
