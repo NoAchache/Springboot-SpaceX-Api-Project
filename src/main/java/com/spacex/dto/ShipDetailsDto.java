@@ -1,4 +1,4 @@
-package com.simpleproject.dto;
+package com.spacex.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

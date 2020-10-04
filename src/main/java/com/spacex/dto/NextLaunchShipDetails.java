@@ -1,11 +1,11 @@
-package com.simpleproject.dto;
+package com.spacex.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -24,7 +24,8 @@ public class NextLaunchShipDetails {
     @JsonProperty("fairing_recovery_ships")
     private List<ShipDetailsDto> fairingRecoveryShips = Collections.emptyList();
 
-    @JsonProperty("fairing_recovery_ships")
+    @JsonProperty("other_ships")
     private List<ShipDetailsDto> otherShips = Collections.emptyList();
+
 
 }

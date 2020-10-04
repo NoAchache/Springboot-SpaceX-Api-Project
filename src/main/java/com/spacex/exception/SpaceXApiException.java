@@ -1,4 +1,4 @@
-package com.simpleproject.exception;
+package com.spacex.exception;
 
 public class SpaceXApiException extends Exception {
 

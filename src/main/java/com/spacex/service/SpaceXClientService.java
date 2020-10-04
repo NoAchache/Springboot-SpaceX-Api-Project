@@ -1,8 +1,8 @@
-package com.simpleproject.service;
+package com.spacex.service;
 
-import com.simpleproject.dto.NextLaunchDto;
-import com.simpleproject.dto.ShipDetailsDto;
-import com.simpleproject.exception.SpaceXApiException;
+import com.spacex.dto.NextLaunchDto;
+import com.spacex.dto.ShipDetailsDto;
+import com.spacex.exception.SpaceXApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

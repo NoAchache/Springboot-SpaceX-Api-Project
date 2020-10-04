@@ -1,8 +1,9 @@
-package com.simpleproject.controller;
+package com.spacex.controller;
 
-import com.simpleproject.dto.NextLaunchDto;
-import com.simpleproject.exception.SpaceXApiException;
-import com.simpleproject.service.SpaceXService;
+import com.spacex.dto.NextLaunchDto;
+import com.spacex.dto.NextLaunchShipDetails;
+import com.spacex.exception.SpaceXApiException;
+import com.spacex.service.SpaceXService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,12 +18,8 @@ public class SpaceXController {
     private final SpaceXService spaceXService;
 
     @GetMapping("/ships-next-launch") // TODO:rename
-    public NextLaunchDto getNextLaunchInfos() throws SpaceXApiException {
+    public NextLaunchShipDetails getNextLaunchInfos() throws SpaceXApiException {
         NextLaunchDto nextLaunchDto =  spaceXService.getSpaceXNextLaunch();
-        spaceXService.getSpaceXShipsDetailsOfNextLaunch(nextLaunchDto);
-
-        return nextLaunchDto;
-
-
+        return spaceXService.getSpaceXShipsDetailsOfNextLaunch(nextLaunchDto);
     }
 }
