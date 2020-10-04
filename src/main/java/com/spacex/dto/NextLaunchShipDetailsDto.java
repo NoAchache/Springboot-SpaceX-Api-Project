@@ -1,11 +1,8 @@
 package com.spacex.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-import java.util.AbstractList;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class NextLaunchShipDetails {
+public class NextLaunchShipDetailsDto {
 
     @JsonProperty("mission_name")
     private String missionName;

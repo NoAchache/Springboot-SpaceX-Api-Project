@@ -1,7 +1,7 @@
 package com.spacex.service;
 
 import com.spacex.dto.NextLaunchDto;
-import com.spacex.dto.NextLaunchShipDetails;
+import com.spacex.dto.NextLaunchShipDetailsDto;
 import com.spacex.dto.ShipDetailsDto;
 import com.spacex.exception.SpaceXApiException;
 import com.spacex.mapper.SpaceXMapper;
@@ -23,7 +23,7 @@ public class SpaceXService {
         return spaceXClientService.getSpaceXNextLaunch();
     }
 
-    public NextLaunchShipDetails getSpaceXShipsDetailsOfNextLaunch(NextLaunchDto nextLaunchDto)
+    public NextLaunchShipDetailsDto getSpaceXShipsDetailsOfNextLaunch(NextLaunchDto nextLaunchDto)
             throws SpaceXApiException {
         List<String> fairingRecoveryShipsIds = nextLaunchDto.getFairings().getShipsIds();
 
