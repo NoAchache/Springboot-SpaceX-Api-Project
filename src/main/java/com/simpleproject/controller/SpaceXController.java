@@ -17,7 +17,12 @@ public class SpaceXController {
     private final SpaceXService spaceXService;
 
     @GetMapping("/next-launch") // TODO:rename
-    public NextLaunchDto getNextLaunchInfos() throws SpaceXApiException {
-        return spaceXService.getSpaceXNextLaunch();
+    public void getNextLaunchInfos() throws SpaceXApiException {
+        NextLaunchDto nextLaunchDto =  spaceXService.getSpaceXNextLaunch();
+        spaceXService.getSpaceXShipsDetailsOfNextLaunch(nextLaunchDto);
+
+        //TODO: add crew?
+
+
     }
 }

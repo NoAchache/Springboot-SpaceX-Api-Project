@@ -1,6 +1,7 @@
 package com.simpleproject.service;
 
 import com.simpleproject.dto.NextLaunchDto;
+import com.simpleproject.dto.ShipDetailsDto;
 import com.simpleproject.exception.SpaceXApiException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -38,10 +39,29 @@ public class SpaceXClientService {
 
             return response;
         } catch (WebClientResponseException e) {
-            log.error(String.format("Error while calling the SpaceX Api to get next launch %s", e.getMessage()));
+            log.error(String.format("Error while calling the SpaceX Api to get next launch. Message: %s", e.getMessage()));
             throw new SpaceXApiException("Error getting next SpaceX launch");
         }
     }
 
+    public ShipDetailsDto getSpaceXShip(String shipId) throws SpaceXApiException {
+        try {
+            log.info("XXXX");
+
+            ShipDetailsDto response = webClient
+                    .get()
+                    .uri("/ships/" + shipId)
+                    .retrieve()
+                    .bodyToMono(ShipDetailsDto.class)
+                    .block();
+
+            log.info("xxx");
+
+            return response;
+        } catch (WebClientResponseException e) {
+            log.error(String.format("Error while calling the SpaceX Api to get ship with id %s. Message: %s", shipId, e.getMessage()));
+            throw new SpaceXApiException("Error getting SpaceX ship");
+        }
+    }
 }
 

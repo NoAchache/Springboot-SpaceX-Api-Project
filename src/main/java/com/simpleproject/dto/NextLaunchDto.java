@@ -16,32 +16,22 @@ import java.util.List;
 public class NextLaunchDto {
     private Fairings fairings = new Fairings();
 
-    @JsonProperty("rocket")
-    private String rocketId;
-
     private String details;
 
     @JsonProperty("ships")
-    private List<String> shipsId = Collections.emptyList();
-
-    @JsonProperty("capsules")
-    private List<String> capsulesId = Collections.emptyList();
-
-    @JsonProperty("payloads")
-    private List<String> payloadsId = Collections.emptyList();
-
-    @JsonProperty("launchpad")
-    private String launchpadId;
+    private List<String> shipsIds = Collections.emptyList();
 
     @JsonProperty("flight_number")
     private String flightNumber;
+
+    private String name;
 
     private String id;
 
     @Data
     public static class Fairings {
         @JsonProperty("ships")
-        private List<String> shipsId = Collections.emptyList();
+        private List<String> shipsIds = Collections.emptyList();
     }
 
 
