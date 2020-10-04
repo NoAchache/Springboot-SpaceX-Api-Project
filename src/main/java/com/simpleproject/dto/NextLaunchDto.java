@@ -21,12 +21,7 @@ public class NextLaunchDto {
     @JsonProperty("ships")
     private List<String> shipsIds = Collections.emptyList();
 
-    @JsonProperty("flight_number")
-    private String flightNumber;
-
     private String name;
-
-    private String id;
 
     @Data
     public static class Fairings {

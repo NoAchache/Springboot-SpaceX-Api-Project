@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class SpaceXController {
     private final SpaceXService spaceXService;
 
-    @GetMapping("/next-launch") // TODO:rename
-    public void getNextLaunchInfos() throws SpaceXApiException {
+    @GetMapping("/ships-next-launch") // TODO:rename
+    public NextLaunchDto getNextLaunchInfos() throws SpaceXApiException {
         NextLaunchDto nextLaunchDto =  spaceXService.getSpaceXNextLaunch();
         spaceXService.getSpaceXShipsDetailsOfNextLaunch(nextLaunchDto);
 
-        //TODO: add crew?
+        return nextLaunchDto;
 
 
     }
