@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/spaceX")
-@Slf4j //TODO:add logs
 public class SpaceXController {
     private final SpaceXService spaceXService;
     @GetMapping("/ships-next-launch")

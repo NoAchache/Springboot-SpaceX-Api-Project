@@ -17,25 +17,27 @@ import javax.annotation.PostConstruct;
 @Slf4j // TODO: add logs
 public class SpaceXClientService {
     private WebClient webClient;
+    private static final String baseUrl = "https://api.spacexdata.com/v4/";
 
     @PostConstruct
     @SuppressWarnings("unused")
     public void setup() {
-        webClient = WebClient.create("https://api.spacexdata.com/v4/");
+        webClient = WebClient.create(baseUrl);
     }
 
     public NextLaunchDto getSpaceXNextLaunch() throws SpaceXApiException {
         try {
-            log.info("XXXX");
+            String uri = "launches/next";
+            log.info("Retrieving next SpaceX launch. Call: GET " + baseUrl + uri);
 
             NextLaunchDto response = webClient
                     .get()
-                    .uri("/launches/next")
+                    .uri(uri)
                     .retrieve()
                     .bodyToMono(NextLaunchDto.class)
                     .block();
 
-            log.info("xxx");
+            log.info("Successfully retrieved next SpaceX launch");
 
             return response;
         } catch (WebClientResponseException e) {
@@ -46,16 +48,17 @@ public class SpaceXClientService {
 
     public ShipDetailsDto getSpaceXShip(String shipId) throws SpaceXApiException {
         try {
-            log.info("XXXX");
+            String uri = "ships/" + shipId;
+            log.info("Retrieving ship details. Call: GET " + baseUrl + uri);
 
             ShipDetailsDto response = webClient
                     .get()
-                    .uri("/ships/" + shipId)
+                    .uri(uri)
                     .retrieve()
                     .bodyToMono(ShipDetailsDto.class)
                     .block();
 
-            log.info("xxx");
+            log.info("Successfully retrieved ship details");
 
             return response;
         } catch (WebClientResponseException e) {
