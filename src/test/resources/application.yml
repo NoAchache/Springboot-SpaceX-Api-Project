@@ -1,0 +1,3 @@
+application:
+  spaceXApi:
+    url: "http://localhost:8500"

@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShipDetailsDto {
-    private String type;
+  private String type;
 
-    @JsonProperty("home_port")
-    private String homePort;
+  @JsonProperty("home_port")
+  private String homePort;
 
-    private String name;
+  private String name;
 }
