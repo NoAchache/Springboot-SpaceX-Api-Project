@@ -9,7 +9,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import io.netty.handler.codec.http.HttpHeaderNames;
 import io.netty.handler.codec.http.HttpMethod;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -84,7 +83,7 @@ public class SpaceXControllerTest {
 
     instantiateSpaceXMockServer(
       "/ships/" + SpaceXControllerTestUtils.SHIP_ID,
-      SpaceXControllerTestUtils.SHIP_RESPONSE_BODY,
+      SpaceXControllerTestUtils.OTHER_SHIP_RESPONSE_BODY,
       200
     );
 
