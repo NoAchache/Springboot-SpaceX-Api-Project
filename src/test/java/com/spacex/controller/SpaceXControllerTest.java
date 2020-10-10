@@ -30,12 +30,8 @@ public class SpaceXControllerTest {
 
   @BeforeAll
   public static void startup() {
+    // 8500 is the local port specified in the application.yml of test directory
     spaceXMockServer = startClientAndServer(8500);
-  }
-
-  @AfterAll
-  public static void cleanUp() {
-    spaceXMockServer.stop();
   }
 
   @BeforeEach
@@ -61,6 +57,23 @@ public class SpaceXControllerTest {
       );
   }
 
+  private void mockGetShipsNextLaunchSuccess(String outputBody)
+    throws Exception {
+    mockMvc
+      .perform(get("/spaceX/ships-next-launch"))
+      .andExpect(status().isOk())
+      .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+      .andExpect(content().json(outputBody))
+      .andReturn();
+  }
+
+  private void mockGetShipsNextLaunchFailedDependency() throws Exception {
+    mockMvc
+      .perform(get("/spaceX/ships-next-launch"))
+      .andExpect(status().isFailedDependency())
+      .andReturn();
+  }
+
   @Test
   void testGetShipsNextLaunchSuccess() throws Exception {
     instantiateSpaceXMockServer(
@@ -81,13 +94,51 @@ public class SpaceXControllerTest {
       200
     );
 
-    mockMvc
-      .perform(get("/spaceX/ships-next-launch"))
-      .andExpect(status().isOk())
-      .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-      .andExpect(
-        content().json(SpaceXControllerTestUtils.SHIP_NEXT_LAUNCH_RESPONSE_BODY)
-      )
-      .andReturn();
+    mockGetShipsNextLaunchSuccess(
+      SpaceXControllerTestUtils.SHIP_NEXT_LAUNCH_RESPONSE_BODY
+    );
+  }
+
+  @Test
+  void testNoShipsSuccess() throws Exception {
+    instantiateSpaceXMockServer(
+      "/launches/next",
+      SpaceXControllerTestUtils.NEXT_LAUNCH_EMPTY_SHIPS_RESPONSE_BODY,
+      200
+    );
+
+    mockGetShipsNextLaunchSuccess(
+      SpaceXControllerTestUtils.NO_SHIPS_NEXT_LAUNCH_RESPONSE_BODY
+    );
+  }
+
+  @Test
+  void testGetNextLaunchError() throws Exception {
+    instantiateSpaceXMockServer("/launches/next", "", 400);
+
+    mockGetShipsNextLaunchFailedDependency();
+  }
+
+  @Test
+  void testGetShipError() throws Exception {
+    instantiateSpaceXMockServer(
+      "/launches/next",
+      SpaceXControllerTestUtils.NEXT_LAUNCH_RESPONSE_BODY,
+      200
+    );
+
+    instantiateSpaceXMockServer(
+      "/ships/" + SpaceXControllerTestUtils.SHIP_ID,
+      "",
+      400
+    );
+
+    instantiateSpaceXMockServer(
+      "/ships/" + SpaceXControllerTestUtils.FAIRING_SHIP_ID,
+      "",
+      400
+    );
+
+    mockGetShipsNextLaunchFailedDependency();
   }
 }
