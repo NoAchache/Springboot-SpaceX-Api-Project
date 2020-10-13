@@ -10,7 +10,7 @@ The main information about the ships (fairing recovery ships + other ships) invo
 ## Run the application
 
 * Start the application: `./mvnw spring-boot:run`
-* Run the following request (on Postman for instance): `GET http://localhost:8001/spaceX/ships-next-launch`
+* Run the following request on a REST client: `GET http://localhost:8001/spaceX/ships-next-launch`
 
 
 ## Overview of the code
